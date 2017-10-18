@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: 1446f10778dca4e3fb36d94c1bb215d2
+timeCreated: 1507124447
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Backbone
+    100004: Bone_003
+    100006: Bone_004
+    100008: Bone_006
+    100010: Chicken
+    100012: //RootNode
+    100014: Cylinder
+    100016: Cylinder_MeshPart0
+    100018: Cylinder_MeshPart1
+    100020: Cylinder_MeshPart2
+    100022: Eyes
+    100024: Finger1_L
+    100026: Finger1_L_001
+    100028: Finger1_R
+    100030: Finger1_R_001
+    100032: Finger2_L
+    100034: Finger2_L_001
+    100036: Finger2_L_002
+    100038: Finger2_R
+    100040: Finger2_R_001
+    100042: Finger2_R_002
+    100044: Finger3_L
+    100046: Finger3_L_001
+    100048: Finger3_L_002
+    100050: Finger3_R
+    100052: Finger3_R_001
+    100054: Finger3_R_002
+    100056: Finger4_L
+    100058: Finger4_L_001
+    100060: Finger4_L_002
+    100062: Finger4_R
+    100064: Finger4_R_001
+    100066: Finger4_R_002
+    100068: Head
+    100070: Head_L
+    100072: Head_R
+    100074: Hip
+    100076: IK-Head
+    100078: IK-Knee_L
+    100080: IK-Knee_R
+    100082: IK-Leg_L
+    100084: IK-Leg_R
+    100086: Leg_L_001
+    100088: Leg_L_002
+    100090: Leg_R_001
+    100092: Leg_R_002
+    100094: Main
+    400000: Armature
+    400002: Backbone
+    400004: Bone_003
+    400006: Bone_004
+    400008: Bone_006
+    400010: Chicken
+    400012: //RootNode
+    400014: Cylinder
+    400016: Cylinder_MeshPart0
+    400018: Cylinder_MeshPart1
+    400020: Cylinder_MeshPart2
+    400022: Eyes
+    400024: Finger1_L
+    400026: Finger1_L_001
+    400028: Finger1_R
+    400030: Finger1_R_001
+    400032: Finger2_L
+    400034: Finger2_L_001
+    400036: Finger2_L_002
+    400038: Finger2_R
+    400040: Finger2_R_001
+    400042: Finger2_R_002
+    400044: Finger3_L
+    400046: Finger3_L_001
+    400048: Finger3_L_002
+    400050: Finger3_R
+    400052: Finger3_R_001
+    400054: Finger3_R_002
+    400056: Finger4_L
+    400058: Finger4_L_001
+    400060: Finger4_L_002
+    400062: Finger4_R
+    400064: Finger4_R_001
+    400066: Finger4_R_002
+    400068: Head
+    400070: Head_L
+    400072: Head_R
+    400074: Hip
+    400076: IK-Head
+    400078: IK-Knee_L
+    400080: IK-Knee_R
+    400082: IK-Leg_L
+    400084: IK-Leg_R
+    400086: Leg_L_001
+    400088: Leg_L_002
+    400090: Leg_R_001
+    400092: Leg_R_002
+    400094: Main
+    2300000: Cylinder_MeshPart0
+    2300002: Cylinder_MeshPart1
+    2300004: Cylinder_MeshPart2
+    3300000: Cylinder_MeshPart0
+    3300002: Cylinder_MeshPart1
+    3300004: Cylinder_MeshPart2
+    4300000: Chicken
+    4300002: Eyes
+    4300004: Cylinder_MeshPart0
+    4300006: Cylinder_MeshPart1
+    4300008: Cylinder_MeshPart2
+    7400000: Default Take
+    7400002: BeginPecking
+    7400004: Dying
+    7400006: Eating
+    7400008: EndPecking
+    7400010: Idle
+    7400012: Idle1
+    7400014: Idle2
+    7400016: Pecking1
+    7400018: Pecking2
+    7400020: Pecking3
+    7400022: Stand
+    7400024: StopPecking
+    7400026: Walk
+    9500000: //RootNode
+    13700000: Chicken
+    13700002: Eyes
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
