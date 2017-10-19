@@ -100,6 +100,8 @@ ModelImporter:
     100184: Trees.012
     100186: Trees.013
     100188: Trees.014
+    100190: Farm
+    100192: Farm.001
     400000: Barrels
     400002: Big Rock
     400004: Brush.000
@@ -195,6 +197,8 @@ ModelImporter:
     400184: Trees.012
     400186: Trees.013
     400188: Trees.014
+    400190: Farm
+    400192: Farm.001
     2300000: Barrels
     2300002: Big Rock
     2300004: Brush.000
@@ -289,6 +293,8 @@ ModelImporter:
     2300182: Trees.012
     2300184: Trees.013
     2300186: Trees.014
+    2300188: Farm
+    2300190: Farm.001
     3300000: Barrels
     3300002: Big Rock
     3300004: Brush.000
@@ -383,6 +389,8 @@ ModelImporter:
     3300182: Trees.012
     3300184: Trees.013
     3300186: Trees.014
+    3300188: Farm
+    3300190: Farm.001
     4300000: Rock.004
     4300002: Rock.003
     4300004: Rock.002
@@ -477,6 +485,104 @@ ModelImporter:
     4300182: farm_silo
     4300184: farm_stump
     4300186: farm_tractor
+    4300188: Farm.001
+    4300190: Farm
+    6400000: Barrels
+    6400002: Big Rock
+    6400004: Brush.000
+    6400006: Brush.001
+    6400008: Brush.002
+    6400010: Brush.003
+    6400012: Brush.004
+    6400014: Brush.005
+    6400016: Brush.006
+    6400018: Brush.007
+    6400020: Brush.008
+    6400022: Brush.009
+    6400024: Brush.010
+    6400026: Brush.011
+    6400028: Brush.012
+    6400030: Brush.013
+    6400032: Brush.014
+    6400034: Brush.015
+    6400036: Brush.016
+    6400038: Brush.017
+    6400040: Brush.018
+    6400042: Brush.019
+    6400044: Brush.020
+    6400046: Brush.021
+    6400048: Brush.022
+    6400050: Brush.023
+    6400052: Brush.024
+    6400054: Brush.025
+    6400056: Brush.026
+    6400058: Brush.027
+    6400060: Brush.028
+    6400062: Brush.029
+    6400064: Brush.030
+    6400066: Brush.031
+    6400068: Brush.032
+    6400070: Brush.033
+    6400072: Brush.034
+    6400074: Brush.035
+    6400076: Brush.036
+    6400078: Brush.037
+    6400080: Brush.038
+    6400082: Brush.039
+    6400084: Brush.040
+    6400086: Brush.041
+    6400088: Brush.042
+    6400090: Brush.043
+    6400092: Brush.044
+    6400094: Brush.045
+    6400096: Brush.046
+    6400098: Brush.047
+    6400100: Brush.048
+    6400102: Brush.049
+    6400104: Brush.050
+    6400106: Brush.051
+    6400108: Brush.052
+    6400110: Brush.053
+    6400112: Brush.054
+    6400114: Brush.055
+    6400116: Brush.056
+    6400118: Brush.057
+    6400120: Brush.058
+    6400122: Brush.059
+    6400124: Brush.060
+    6400126: Brush.061
+    6400128: farm_barn
+    6400130: farm_silo
+    6400132: farm_stump
+    6400134: farm_tractor
+    6400136: Fence.001
+    6400138: Fence.002
+    6400140: Fence.003
+    6400142: Fence.004
+    6400144: Fence.005
+    6400146: Fence_Enter
+    6400148: Ground
+    6400150: Rock.001
+    6400152: Rock.002
+    6400154: Rock.003
+    6400156: Rock.004
+    6400158: Trees.000
+    6400160: Trees.001
+    6400162: Trees.002
+    6400164: Trees.003
+    6400166: Trees.004
+    6400168: Trees.005
+    6400170: Trees.006
+    6400172: Trees.007
+    6400174: Trees.008
+    6400176: Trees.009
+    6400178: Trees.010
+    6400180: Trees.011
+    6400182: Trees.012
+    6400184: Trees.013
+    6400186: Trees.014
+    6400188: Farm
+    6400190: Farm.001
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -564,7 +670,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

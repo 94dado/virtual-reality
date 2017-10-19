@@ -1,73 +1,68 @@
 ﻿using UnityEngine;
 
-public class CameraMovement : MonoBehaviour {
+public class CameraMovement : MonoBehaviour
+{
+    //constraints
+    public Transform player;
+    public float maxUpRotation = 20f;
+    public float maxDownRotation = 20f;
+    public float verticalOffset = 0f;
+    public float gravity = 100f;
 
-    public float keySpeed = 10;
+    //movement velocities
     public float mouseSpeed = 1.25f;
-    public GameObject eye;
+    public float keySpeed = 10;
 
-    Quaternion originalRotation;
-    Vector2 angle = new Vector2(0f, 0f);
-    Vector2 minAngle = new Vector2(-360f, -90f);
-    Vector2 maxAngle = new Vector2(360f, 90f);
-    float limit = 360f;
+    private float rotX = 0.0f; // rotation around the horizontal/x axis
+    private float rotY = 0.0f; // rotation around the up/y axis
+
+    private float fixedY;      // to never change Y value
+
+    private float distance;
+    private float rotationXoffset;
+
+    private CharacterController controller;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
+        Vector3 rot = transform.localRotation.eulerAngles;
+        rotX = rot.x;
+        rotY = rot.y;
+        rotationXoffset = rotX;
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        //lock the cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        originalRotation = transform.localRotation;
+        //get the player datas
+        controller = player.GetComponent<CharacterController>();
+        fixedY = player.position.y;
     }
 
-    void Update() {
-        if (Input.GetKey(KeyCode.A)) {
-            Strafe(-keySpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D)) {
-            Strafe(keySpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.W)) {
-            Ahead(keySpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S)) {
-            Ahead(-keySpeed * Time.deltaTime);
-        }
+    // Update is called once per frame
+    void Update()
+    {
+        //camera rotation
+        float mouseY = -Input.GetAxis("Mouse Y");
+        float mouseX = Input.GetAxis("Mouse X");
+        rotY += mouseX * mouseSpeed * Time.deltaTime;
+        rotX += mouseY * mouseSpeed * Time.deltaTime;
+        rotX = Mathf.Clamp(rotX, rotationXoffset - maxUpRotation, rotationXoffset + maxDownRotation);
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
 
-        float dx = Input.GetAxis("Mouse X");
-        float dy = Input.GetAxis("Mouse Y");
-        Look(new Vector2(dx, dy) * mouseSpeed);
-    }
+        //camera position
+        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+        Vector3 position = localRotation * negDistance + player.position;
+        position = new Vector3(position.x, position.y + verticalOffset, position.z);
+        transform.position = position;
 
-    // move player left and right
-    void Strafe(float dist) {
-        transform.position += eye.transform.right * dist;
-    }
-
-    // move player ahead and back
-    void Ahead(float dist) {
-        transform.position += eye.transform.forward * dist;
-    }
-
-    // move the camera to look the new position of the player
-    void Look(Vector2 dist) {
-        angle += dist;
-
-        angle.x = ClampAngle(angle.x, minAngle.x, maxAngle.x);
-        angle.y = ClampAngle(angle.y, minAngle.y, maxAngle.y);
-
-        Quaternion quatX = Quaternion.AngleAxis(angle.x, Vector3.up);
-        Quaternion quatY = Quaternion.AngleAxis(angle.y, -Vector3.right);
-
-        transform.localRotation = originalRotation * quatX * quatY;
-    }
-
-    float ClampAngle(float angulation, float min, float max) {
-        if (angulation < -limit) {
-            angulation += limit;
-        }
-        else if (angulation > limit) {
-            angulation -= limit;
-        }
-        return Mathf.Clamp(angulation, min, max);
+        //player position
+        Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        moveDir = transform.TransformDirection(moveDir);
+        moveDir *= keySpeed;
+        moveDir = new Vector3(moveDir.x, 0, moveDir.z);
+        moveDir.y -= gravity * Time.deltaTime;
+        controller.Move(moveDir * Time.deltaTime);
     }
 }
