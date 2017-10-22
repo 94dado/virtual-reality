@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: e8c6f32b7b38b794cb9ba0b568178a02
+timeCreated: 1508683139
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: barriga
+    100004: barriga_end
+    100006: //RootNode
+    100008: bisonhento
+    100010: cabeca
+    100012: cabeca_end
+    100014: canela.d.l
+    100016: canela.d.r
+    100018: canela.t.l
+    100020: canela.t.r
+    100022: controle
+    100024: coxa.d.l
+    100026: coxa.d.r
+    100028: coxa.t.l
+    100030: coxa.t.r
+    100032: ik.limit.pe.d.l
+    100034: ik.limit.pe.d.l_end
+    100036: ik.limit.pe.d.r
+    100038: ik.limit.pe.d.r_end
+    100040: ik.limit.pe.t.l
+    100042: ik.limit.pe.t.l_end
+    100044: ik.limit.pe.t.r
+    100046: ik.limit.pe.t.r_end
+    100048: pe.d.l
+    100050: pe.d.l_end
+    100052: pe.d.r
+    100054: pe.d.r_end
+    100056: pe.t.l
+    100058: pe.t.l_end
+    100060: pe.t.r
+    100062: pe.t.r_end
+    100064: peito
+    100066: pescoco
+    100068: rabo.001
+    100070: rabo.002
+    100072: rabo.003
+    100074: rabo.004
+    100076: rabo.004_end
+    100078: traseiro
+    400000: Armature
+    400002: barriga
+    400004: barriga_end
+    400006: //RootNode
+    400008: bisonhento
+    400010: cabeca
+    400012: cabeca_end
+    400014: canela.d.l
+    400016: canela.d.r
+    400018: canela.t.l
+    400020: canela.t.r
+    400022: controle
+    400024: coxa.d.l
+    400026: coxa.d.r
+    400028: coxa.t.l
+    400030: coxa.t.r
+    400032: ik.limit.pe.d.l
+    400034: ik.limit.pe.d.l_end
+    400036: ik.limit.pe.d.r
+    400038: ik.limit.pe.d.r_end
+    400040: ik.limit.pe.t.l
+    400042: ik.limit.pe.t.l_end
+    400044: ik.limit.pe.t.r
+    400046: ik.limit.pe.t.r_end
+    400048: pe.d.l
+    400050: pe.d.l_end
+    400052: pe.d.r
+    400054: pe.d.r_end
+    400056: pe.t.l
+    400058: pe.t.l_end
+    400060: pe.t.r
+    400062: pe.t.r_end
+    400064: peito
+    400066: pescoco
+    400068: rabo.001
+    400070: rabo.002
+    400072: rabo.003
+    400074: rabo.004
+    400076: rabo.004_end
+    400078: traseiro
+    4300000: bisonhento
+    7400000: Armature|ArmatureAction
+    7400002: Armature|CDA:ObIpo.006
+    9500000: //RootNode
+    13700000: bisonhento
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bisonhento
+    second: {fileID: 2100000, guid: f08f0511315aa94408878a53b8b471aa, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

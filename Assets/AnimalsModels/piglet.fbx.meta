@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: af170b4b3149b6b41acfbcea4e5dbe4e
+timeCreated: 1508682464
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: arm_fore.L
+    100002: arm_fore.R
+    100004: arm_upper.L
+    100006: arm_upper.R
+    100008: Camera
+    100010: chest
+    100012: ctr_eyes
+    100014: ctr_foot.B.L
+    100016: ctr_foot.B.R
+    100018: ctr_foot.F.L
+    100020: ctr_foot.F.R
+    100022: ctr_leg.B.L
+    100024: ctr_leg.B.R
+    100026: ctr_leg.F.L
+    100028: ctr_leg.F.R
+    100030: ctr_shin.B.L
+    100032: ctr_shin.B.R
+    100034: earbase.L
+    100036: earbase.L_end
+    100038: earbase.R
+    100040: earbase.R_end
+    100042: eye.L
+    100044: eye.L_end
+    100046: eye.R
+    100048: eye.R_end
+    100050: eye_lookat.L
+    100052: eye_lookat.L_end
+    100054: eye_lookat.R
+    100056: eye_lookat.R_end
+    100058: foot.B.L
+    100060: foot.B.L_end
+    100062: foot.B.R
+    100064: foot.B.R_end
+    100066: foot.F.L
+    100068: foot.F.L_end
+    100070: foot.F.R
+    100072: foot.F.R_end
+    100074: Ground
+    100076: head
+    100078: hip.L
+    100080: hip.R
+    100082: knee_target.B.L
+    100084: knee_target.B.L_end
+    100086: knee_target.B.R
+    100088: knee_target.B.R_end
+    100090: knee_target.F.L
+    100092: knee_target.F.L_end
+    100094: knee_target.F.R
+    100096: knee_target.F.R_end
+    100098: leg_upper.B.L
+    100100: leg_upper.B.R
+    100102: neck
+    100104: pelvis
+    100106: Piglet
+    100108: //RootNode
+    100110: piglet_Armature
+    100112: shin.B.L
+    100114: shin.B.R
+    100116: shin.F.L
+    100118: shin.F.R
+    100120: shin_target.F.L
+    100122: shin_target.F.R
+    100124: shoulder.L
+    100126: shoulder.R
+    100128: snout
+    100130: snout_end
+    100132: spine
+    100134: tailbase
+    100136: tailbase_end
+    100138: thigh.B.L
+    100140: thigh.B.R
+    100142: thigh.F.R
+    100144: thigh.F.R_end
+    400000: arm_fore.L
+    400002: arm_fore.R
+    400004: arm_upper.L
+    400006: arm_upper.R
+    400008: Camera
+    400010: chest
+    400012: ctr_eyes
+    400014: ctr_foot.B.L
+    400016: ctr_foot.B.R
+    400018: ctr_foot.F.L
+    400020: ctr_foot.F.R
+    400022: ctr_leg.B.L
+    400024: ctr_leg.B.R
+    400026: ctr_leg.F.L
+    400028: ctr_leg.F.R
+    400030: ctr_shin.B.L
+    400032: ctr_shin.B.R
+    400034: earbase.L
+    400036: earbase.L_end
+    400038: earbase.R
+    400040: earbase.R_end
+    400042: eye.L
+    400044: eye.L_end
+    400046: eye.R
+    400048: eye.R_end
+    400050: eye_lookat.L
+    400052: eye_lookat.L_end
+    400054: eye_lookat.R
+    400056: eye_lookat.R_end
+    400058: foot.B.L
+    400060: foot.B.L_end
+    400062: foot.B.R
+    400064: foot.B.R_end
+    400066: foot.F.L
+    400068: foot.F.L_end
+    400070: foot.F.R
+    400072: foot.F.R_end
+    400074: Ground
+    400076: head
+    400078: hip.L
+    400080: hip.R
+    400082: knee_target.B.L
+    400084: knee_target.B.L_end
+    400086: knee_target.B.R
+    400088: knee_target.B.R_end
+    400090: knee_target.F.L
+    400092: knee_target.F.L_end
+    400094: knee_target.F.R
+    400096: knee_target.F.R_end
+    400098: leg_upper.B.L
+    400100: leg_upper.B.R
+    400102: neck
+    400104: pelvis
+    400106: Piglet
+    400108: //RootNode
+    400110: piglet_Armature
+    400112: shin.B.L
+    400114: shin.B.R
+    400116: shin.F.L
+    400118: shin.F.R
+    400120: shin_target.F.L
+    400122: shin_target.F.R
+    400124: shoulder.L
+    400126: shoulder.R
+    400128: snout
+    400130: snout_end
+    400132: spine
+    400134: tailbase
+    400136: tailbase_end
+    400138: thigh.B.L
+    400140: thigh.B.R
+    400142: thigh.F.R
+    400144: thigh.F.R_end
+    2000000: Camera
+    2300000: Ground
+    3300000: Ground
+    4300000: Piglet
+    4300002: Ground
+    7400000: piglet_Armature|armature_pigletAction.002
+    9500000: //RootNode
+    13700000: Piglet
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyTex
+    second: {fileID: 2100000, guid: 8dc43b90996484743bd260d36e4e0b2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyTex.shine
+    second: {fileID: 2100000, guid: 4561c719140d37d45b9e61f4692c0343, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye
+    second: {fileID: 2100000, guid: d48502b3fbf2efc45a4cbeee2beb8fe7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 043e63820b808204ca46739d81cba59f, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: piglet_Armature|armature_pigletAction.002
+      takeName: piglet_Armature|armature_pigletAction.002
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
