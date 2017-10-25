@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 4337255347166974}
   - component: {fileID: 54184803208852506}
   - component: {fileID: 114042544837330712}
+  - component: {fileID: 114618343362074222}
   - component: {fileID: 195647814273999606}
   m_Layer: 0
   m_Name: Pig
@@ -2163,8 +2164,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleTime: 0.1
-  minimumDistance: 0
+  minimumDistance: 1.5
   animator: {fileID: 95089672778980820}
+--- !u!114 &114618343362074222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213761626423064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff650d8c1b944a549f08178a3f0bd2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
 --- !u!137 &137388978275659066
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2273,15 +2286,15 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 10
+  m_Speed: 3
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.4
+  m_Height: 2
   m_BaseOffset: 1.6
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

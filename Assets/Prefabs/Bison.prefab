@@ -248,6 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4877504177901174}
   - component: {fileID: 54524693384647558}
+  - component: {fileID: 114536553390662184}
   m_Layer: 0
   m_Name: Bison
   m_TagString: Untagged
@@ -1251,6 +1252,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114536553390662184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293074495085976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff650d8c1b944a549f08178a3f0bd2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
 --- !u!137 &137306547165033662
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

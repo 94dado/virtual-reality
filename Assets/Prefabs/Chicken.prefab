@@ -789,7 +789,9 @@ GameObject:
   - component: {fileID: 4945039573640354}
   - component: {fileID: 95525528074511538}
   - component: {fileID: 54317153834739276}
+  - component: {fileID: 114760292255815314}
   - component: {fileID: 195811269568184956}
+  - component: {fileID: 114451250632041222}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -1807,6 +1809,32 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114451250632041222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856018845828062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff650d8c1b944a549f08178a3f0bd2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+--- !u!114 &114760292255815314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856018845828062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78933ba693d40a14eb8144c6d7c1d3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleTime: 1
+  minimumDistance: 1.5
+  animator: {fileID: 95525528074511538}
 --- !u!137 &137462214736996148
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

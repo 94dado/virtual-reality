@@ -22,7 +22,7 @@ public class AnimalMovement : MonoBehaviour {
         spawner = FindObjectOfType<EnemySpawn>();
 	}
 
-    protected virtual IEnumerator MovementRoutine() {
+    protected IEnumerator MovementRoutine() {
         while (true) {
             //animal just spawned or stopped. Wait some times
             yield return new WaitForSeconds(idleTime);
