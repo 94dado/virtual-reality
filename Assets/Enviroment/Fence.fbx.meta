@@ -101,6 +101,8 @@ ModelImporter:
     100186: Trees.012
     100188: Trees.013
     100190: Trees.014
+    100192: Camera
+    100194: Lamp
     400000: //RootNode
     400002: Barrels
     400004: Big Rock
@@ -197,6 +199,9 @@ ModelImporter:
     400186: Trees.012
     400188: Trees.013
     400190: Trees.014
+    400192: Camera
+    400194: Lamp
+    2000000: Camera
     2300000: //RootNode
     2300002: Barrels
     2300004: Big Rock
@@ -488,6 +493,7 @@ ModelImporter:
     7400002: Fence_Enter|Fence_EnterAction
     7400004: Fence_Enter|Fence_Opened
     9500000: //RootNode
+    10800000: Lamp
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -582,7 +588,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -602,7 +608,7 @@ ModelImporter:
       name: Fence_Enter|Fence_EnterAction
       takeName: Fence_Enter|Fence_EnterAction
       firstFrame: 0
-      lastFrame: 10
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

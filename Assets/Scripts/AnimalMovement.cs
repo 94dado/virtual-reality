@@ -18,7 +18,7 @@ public class AnimalMovement : MonoBehaviour {
         StartCoroutine(MovementRoutine());
 	}
 
-    private IEnumerator MovementRoutine() {
+    protected virtual IEnumerator MovementRoutine() {
         while (true) {
         //animal just spawned or stopped. Wait some times
         yield return new WaitForSeconds(idleTime);
