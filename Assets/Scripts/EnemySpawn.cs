@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour {
 
+    public Transform topCorner;
+    public Transform bottomCorner;
+    public Transform rightCorner;
+    public Transform leftCorner;
     public GameObject[] animals;
     [Range(1, 10)] public int maxAnimals;
     public float spawnTime;
@@ -14,7 +18,6 @@ public class EnemySpawn : MonoBehaviour {
         // if we can add another animal and spawntime is passed
         if (transform.childCount < maxAnimals && currentTime <= Time.time) {
             Spawn();
-            Debug.Log("----- USCITO -----");
         }
 	}
 
@@ -32,9 +35,8 @@ public class EnemySpawn : MonoBehaviour {
         float x = 0f;
         float z = 0f;
         while (!find) {
-            x = Random.Range(transform.position.x - transform.localScale.x, transform.position.x + transform.localScale.x);
-            z = Random.Range(transform.position.z - transform.localScale.z, transform.position.z + transform.localScale.z);
-            Debug.Log("x: " + x + ", z: " + z);
+            x = Random.Range(topCorner.position.x, bottomCorner.position.x);
+            z = Random.Range(rightCorner.position.z, leftCorner.position.z);
             find = CheckCoord(x, z);
         }
         return new Vector2(x, z);
@@ -43,7 +45,7 @@ public class EnemySpawn : MonoBehaviour {
     // check if coords are not to near to another animal
     bool CheckCoord(float x, float z) {
         bool isFree = true;
-        foreach (Transform animal in transform.GetComponentsInChildren<Transform>()) {
+        foreach (Transform animal in transform) {
             // if is very near another object set to false
             if (x <= (animal.position.x + 5f) && x >= (animal.position.x - 5f) && z <= (animal.position.z + 5f) && z >= (animal.position.z - 5f)) {
                 isFree = false;
