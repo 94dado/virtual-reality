@@ -23,8 +23,8 @@ GameObject:
   m_Name: pe.t.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1024691593587080
 GameObject:
@@ -38,8 +38,8 @@ GameObject:
   m_Name: ik.limit.pe.t.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1032615512417840
 GameObject:
@@ -53,8 +53,8 @@ GameObject:
   m_Name: canela.d.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1038972767235654
 GameObject:
@@ -68,8 +68,8 @@ GameObject:
   m_Name: canela.t.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1057349608929438
 GameObject:
@@ -84,8 +84,8 @@ GameObject:
   m_Name: bisonhento
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1059558372474842
 GameObject:
@@ -99,8 +99,8 @@ GameObject:
   m_Name: peito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1107800454155414
 GameObject:
@@ -114,8 +114,8 @@ GameObject:
   m_Name: ik.limit.pe.d.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1124867046022430
 GameObject:
@@ -129,8 +129,8 @@ GameObject:
   m_Name: ik.limit.pe.t.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1139693522106500
 GameObject:
@@ -144,8 +144,8 @@ GameObject:
   m_Name: canela.d.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1218345544702482
 GameObject:
@@ -159,8 +159,8 @@ GameObject:
   m_Name: coxa.t.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1223005262925586
 GameObject:
@@ -174,8 +174,8 @@ GameObject:
   m_Name: pe.t.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1240598927976506
 GameObject:
@@ -186,12 +186,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4992364633044024}
   - component: {fileID: 137306547165033662}
+  - component: {fileID: 64193533986541118}
   m_Layer: 0
   m_Name: bisonhento
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1254879079461426
 GameObject:
@@ -205,8 +206,8 @@ GameObject:
   m_Name: ik.limit.pe.d.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1265177543331720
 GameObject:
@@ -220,8 +221,8 @@ GameObject:
   m_Name: cabeca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1290155476223758
 GameObject:
@@ -235,8 +236,8 @@ GameObject:
   m_Name: controle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1293074495085976
 GameObject:
@@ -247,13 +248,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4877504177901174}
   - component: {fileID: 54524693384647558}
-  - component: {fileID: 65762111154553578}
   m_Layer: 0
   m_Name: Bison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1320196498902168
 GameObject:
@@ -267,8 +267,8 @@ GameObject:
   m_Name: rabo.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1332145259872086
 GameObject:
@@ -282,8 +282,8 @@ GameObject:
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1361340328488768
 GameObject:
@@ -297,8 +297,8 @@ GameObject:
   m_Name: pe.t.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1380855635720066
 GameObject:
@@ -312,8 +312,8 @@ GameObject:
   m_Name: coxa.d.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1447814377650522
 GameObject:
@@ -327,8 +327,8 @@ GameObject:
   m_Name: ik.limit.pe.d.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1454734928967770
 GameObject:
@@ -342,8 +342,8 @@ GameObject:
   m_Name: canela.t.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1503305446910684
 GameObject:
@@ -357,8 +357,8 @@ GameObject:
   m_Name: rabo.004_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1533797531182498
 GameObject:
@@ -372,8 +372,8 @@ GameObject:
   m_Name: coxa.d.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1594879189419300
 GameObject:
@@ -387,8 +387,8 @@ GameObject:
   m_Name: pe.d.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1605379056801754
 GameObject:
@@ -402,8 +402,8 @@ GameObject:
   m_Name: pe.d.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1631274674610386
 GameObject:
@@ -417,8 +417,8 @@ GameObject:
   m_Name: cabeca_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1647312266808004
 GameObject:
@@ -432,8 +432,8 @@ GameObject:
   m_Name: traseiro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1664230898678236
 GameObject:
@@ -447,8 +447,8 @@ GameObject:
   m_Name: ik.limit.pe.t.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1670517251250496
 GameObject:
@@ -462,8 +462,8 @@ GameObject:
   m_Name: pe.d.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1719068631551932
 GameObject:
@@ -477,8 +477,8 @@ GameObject:
   m_Name: pe.t.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1750953870437804
 GameObject:
@@ -492,8 +492,8 @@ GameObject:
   m_Name: pe.d.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1771608148947638
 GameObject:
@@ -507,8 +507,8 @@ GameObject:
   m_Name: ik.limit.pe.d.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1796987396647226
 GameObject:
@@ -522,8 +522,8 @@ GameObject:
   m_Name: barriga
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1818604684673700
 GameObject:
@@ -537,8 +537,8 @@ GameObject:
   m_Name: ik.limit.pe.t.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1843905845794686
 GameObject:
@@ -552,8 +552,8 @@ GameObject:
   m_Name: rabo.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1853835414131180
 GameObject:
@@ -567,8 +567,8 @@ GameObject:
   m_Name: barriga_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1865158605105254
 GameObject:
@@ -582,8 +582,8 @@ GameObject:
   m_Name: rabo.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1870137890128848
 GameObject:
@@ -597,8 +597,8 @@ GameObject:
   m_Name: rabo.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1925411770196024
 GameObject:
@@ -612,8 +612,8 @@ GameObject:
   m_Name: pescoco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1995538038931278
 GameObject:
@@ -627,8 +627,8 @@ GameObject:
   m_Name: coxa.t.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4012558075376468
 Transform:
@@ -1115,8 +1115,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293074495085976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 2.4, z: -2.989}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4747551779435826}
   m_Father: {fileID: 0}
@@ -1220,18 +1220,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65762111154553578
-BoxCollider:
+--- !u!64 &64193533986541118
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1293074495085976}
+  m_GameObject: {fileID: 1240598927976506}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 16, z: 20}
-  m_Center: {x: -3.5, y: 0.5, z: 4}
+  m_Convex: 1
+  m_InflateMesh: 1
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: e8c6f32b7b38b794cb9ba0b568178a02, type: 3}
 --- !u!95 &95692735507686376
 Animator:
   serializedVersion: 3
@@ -1241,7 +1243,7 @@ Animator:
   m_GameObject: {fileID: 1057349608929438}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e8c6f32b7b38b794cb9ba0b568178a02, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af29b27371cc34e3183a7314c51e1b49, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
