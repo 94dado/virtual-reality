@@ -16,6 +16,9 @@ public class AnimalMovement : MonoBehaviour {
     private float thinkingTime = 1.0f;
 
     private EnemySpawn spawner;
+
+    //delta for reach destination
+    float EPSILON = 0.1f;
     // Update is called once per frame
     void Start () {
         //enable navmesh
@@ -43,13 +46,14 @@ public class AnimalMovement : MonoBehaviour {
             //start moving to destination
             animator.SetBool("Move", true);
             navigator.enabled = true;
+            yield return new WaitForSeconds(0f);
             navigator.SetDestination(destination);
             //Debug.Log("Destination: "+destination);
             yield return new WaitForSeconds(thinkingTime);
             //check when we arrive at the destination
             bool arrived = false;
             while (!arrived) {
-                if (destination.x == transform.position.x && destination.z == transform.position.z) arrived = true;
+                if (System.Math.Abs(destination.x - transform.position.x) < EPSILON && System.Math.Abs(destination.z - transform.position.z) < EPSILON) arrived = true;
                 yield return new WaitForSeconds(thinkingTime);
             }
             //Debug.Log("Arrived");
