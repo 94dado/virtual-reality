@@ -7,7 +7,7 @@ public class EnemySpawn : MonoBehaviour {
     public Transform rightCorner;
     public Transform leftCorner;
     public GameObject[] animals;
-    [Range(1, 10)] public int maxAnimals;
+    [Range(2, 25)] public int maxAnimals;
     public float spawnTime;
 
     float currentTime;

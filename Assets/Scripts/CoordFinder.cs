@@ -17,7 +17,7 @@ public static class CoordFinder {
 
     // check if coords are not to near to another animal
     static bool CheckCoord(float x, float z, Transform transform) {
-        float offset = 5.5f;
+        float offset = 6f;
         bool isFree = true;
         foreach (Transform animal in transform) {
             // if is very near another object set to false
