@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 
     //private attributes
     Controller controller;              //for leap
-    bool aiming = false;             //i'm aiming an enemy?
+    bool aiming;             //i'm aiming an enemy?
 
 	void Start () {
         //create the leap controller

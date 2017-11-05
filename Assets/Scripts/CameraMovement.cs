@@ -6,22 +6,22 @@ public class CameraMovement : MonoBehaviour
     public Transform player;
     public float maxUpRotation = 20f;
     public float maxDownRotation = 20f;
-    public float verticalOffset = 0f;
+    public float verticalOffset;
     public float gravity = 100f;
 
     //movement velocities
     public float mouseSpeed = 1.25f;
     public float keySpeed = 10;
 
-    private float rotX = 0.0f; // rotation around the horizontal/x axis
-    private float rotY = 0.0f; // rotation around the up/y axis
+    float rotX; // rotation around the horizontal/x axis
+    float rotY; // rotation around the up/y axis
 
-    private float fixedY;      // to never change Y value
+    float fixedY;      // to never change Y value
 
-    private float distance;
-    private float rotationXoffset;
+    float distance;
+    float rotationXoffset;
 
-    private CharacterController controller;
+    CharacterController controller;
 
     // Use this for initialization
     void Start()
