@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using Leap;
 
+/*LIST OF ALL GESTURES:
+ * Create fire-ball: open palm facing up
+ * Shoot fire-ball: closed hand, palm facing down
+ * Thunder: two pointing fingers (directed forward)
+ * Missile: palm facing left, two fingers (one directed up, one forward)
+ * Flamethrower: open palm facing forward
+ * Aim enemy: one pointing fingers (directed forward)
+ */
+
 public class PlayerController : MonoBehaviour {
 
     //leap motion settings
@@ -17,47 +26,39 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         //create the leap controller
         controller = new Controller();
-        //enable gestures
-        controller.EnableGesture(Gesture.GestureType.TYPECIRCLE);       //gesture for flamethrower
-        controller.EnableGesture(Gesture.GestureType.TYPESCREENTAP);    //gesture for aiming
-
-        //circle gesture parameter
-        controller.Config.SetFloat("Gesture.Circle.MinRadius", flameRadius);
-        
-        //screentap gesture parameters
-        controller.Config.SetFloat("Gesture.ScreenTap.MinForwardVelocity", aimMinVelocity);
-        controller.Config.SetFloat("Gesture.ScreenTap.HistorySeconds", aimHistorySeconds);
-        controller.Config.SetFloat("Gesture.ScreenTap.MinDistance", aimMinDistance);
     }
 	
 
 	void Update () {
         //get frame and gestures
         Frame frame = controller.Frame();
-        GestureList gestures = frame.Gestures();
-        //elaborate every gesture
-        foreach(Gesture gesture in gestures) {
-            //check if is a valid gesture
-            if (gesture != Gesture.Invalid) {
-                ElaborateGesture(gesture);
-            }
-        }
-        //check if i'm aiming
-        if (aiming) {
-            //todo write the code to handle the different attacks
-        }
+        //search for a custom gesture
+        if(frame.Hands.Count > 0)
+            SearchCustomGesture(frame);
 	}
 
-    //elaborate gesture to do the correct action
-    void ElaborateGesture(Gesture gesture) {
-        if(gesture.Type == Gesture.GestureType.TYPECIRCLE) {
-            Debug.Log("FLAMETHROWER!!!");
-            //todo write the code for the flamethrower
-        }else if(gesture.Type == Gesture.GestureType.TYPESCREENTAP) {
-            //todo write the code to aim an animal
-            Debug.Log("AIM!");
-        }
+    //get data from leap and check if a custom gesture is triggered
+    void SearchCustomGesture(Frame frame) {
+        //get the right hand
+        Hand hand = frame.Hands.Rightmost;
+        //get all the pointing fingers
+        FingerList pointingFingers = hand.Fingers.Extended();
+        //get the direction of the palm
+        Vector palmDirection = GetVectorDirection(hand.PalmNormal);
+        //TODO use the data that we have to recognize the gestures, even the "no gestures event"
+        Debug.Log("Pointing Fingers: " + pointingFingers.Count);
+        Debug.Log("Palm direction: " + palmDirection);
     }
+
+    //return the rounded normal values of the palm of an hand (usefull to confront them with directions)
+    Vector GetVectorDirection(Vector vec) {
+        float x = Mathf.Round(vec.x);
+        float y = Mathf.Round(vec.y);
+        float z = Mathf.Round(vec.z);
+        return new Vector(x, y, z);
+    }
+
+
 
     // attack
     void Attack() {
