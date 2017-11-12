@@ -2,6 +2,9 @@
 
 public class CameraMovement : MonoBehaviour
 {
+
+    //controller settings
+    public bool invertedAxis = true;
     //constraints
     public Transform player;
     public float maxUpRotation = 20f;
@@ -58,7 +61,9 @@ public class CameraMovement : MonoBehaviour
         transform.position = position;
 
         //player position
-        Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 moveDir;
+        if (!invertedAxis) moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        else moveDir = new Vector3(Input.GetAxis("Vertical"), 0, -Input.GetAxis("Horizontal"));
         moveDir = transform.TransformDirection(moveDir);
         moveDir *= keySpeed;
         moveDir = new Vector3(moveDir.x, 0, moveDir.z);
