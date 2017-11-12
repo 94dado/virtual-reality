@@ -13,11 +13,17 @@ using Leap;
 
 public class PlayerController : MonoBehaviour {
     //public
+    public GameObject particleContainer;
+    public Transform handController;
+    public ParticleSystem[] palmParticleEffects;
+    public ParticleSystem[] distantParticleEffects;
     bool useLeapMotion = true;
 
     //private attributes
     Controller controller;              //for leap
     bool aiming;             //i'm aiming an enemy?
+    ParticleSystem particle;
+    Transform aimEnemy;
 
     void Start() {
         //create the leap controller
@@ -62,31 +68,37 @@ public class PlayerController : MonoBehaviour {
         if (pointingFingers.Count == 0 && palmDirection == Vector.Up) {
             Debug.Log("Create fire-ball");
             //TODO create fireball
+            CreatePalmParticle(0);
         }
         //open palm facing up - shoot fireball
         else if (pointingFingers.Count == 5 && palmDirection == Vector.Up) {
             //TODO shoot fireball
             Debug.Log("Shoot fire-ball");
+            Attack(0);
         }
         //closed hand, palm facing down - create thunder
         else if (pointingFingers.Count == 0 && palmDirection == Vector.Down) {
             //TODO create thunder
             Debug.Log("Create thunder");
+            CreatePalmParticle(1);
         }
         //open palm facing down - shoot thunder
         else if (pointingFingers.Count == 5 && palmDirection == Vector.Down) {
             //TODO launch thunder
             Debug.Log("Shoot thunder");
+            Attack(1);
         }
         //palm facing left, two fingers - missile
         else if(FingersLikeGun(pointingFingers) && palmDirection == Vector.Left) {
             //TODO shoot missile
             Debug.Log("Shoot missile");
+            CreatePalmParticle(2);
         }
         //open palm facing forward - flamethrower
         else if(pointingFingers.Count == 5 && palmDirection == Vector.Forward) {
             //TODO start flamethrowing
             Debug.Log("Flamethrower");
+            CreatePalmParticle(3);
         }
         //one pointing finger forward - aim
         else if (pointingFingers.Count == 1 && palmDirection == Vector.Left) {
@@ -102,5 +114,20 @@ public class PlayerController : MonoBehaviour {
         float y = Mathf.Round(vec.y);
         float z = Mathf.Round(vec.z);
         return new Vector(x, y, z);
+    }
+
+    // create the particle effect and attachs it to the hand
+    void CreatePalmParticle(int particleNumber) {
+        // TODO: change the transform in the right hand
+        GameObject container = Instantiate(particleContainer, Vector3.zero, Quaternion.identity, handController);
+        particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
+    }
+
+    // generate the explosion
+    void Attack(int particleNumber) {
+        // if some enemy is aimed
+        if (aiming) {
+            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, Quaternion.identity), 4f);
+        }
     }
 }
