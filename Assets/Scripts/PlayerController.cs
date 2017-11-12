@@ -163,19 +163,26 @@ public class PlayerController : MonoBehaviour {
     void CreatePalmParticle(int particleNumber) {
         // TODO: change the transform in the right hand
         GameObject container;
-        // if flamethrower and rocket
-        if (particleNumber >= 2) {
+        // if  rocket
+        if (particleNumber == 2) {
             container = Instantiate(particleContainer, Vector3.forward, Quaternion.identity, handController);
+            //automaticcally destroy the rocket
+            Destroy(Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform).transform.parent.gameObject, 2f);
+        }
+        // if flamethrower
+        else if (particleNumber == 3) {
+            container = Instantiate(particleContainer, Vector3.forward, Quaternion.identity, handController);
+            particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
         }
         else {
             container = Instantiate(particleContainer, Vector3.zero, Quaternion.identity, handController);
+            particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
         }
-        particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
     }
 
     //destroy the particle
     void DestroyParticle() {
-        if (particle.IsAlive()) {
+        if (particle != null && particle.IsAlive()) {
             Destroy(particle.transform.parent.gameObject);
         }
     }
