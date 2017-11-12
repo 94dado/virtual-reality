@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
     //public
     public GameObject particleContainer;
     public Transform handController;
+    public GameObject marker;
+    public LayerMask enemyMask;
+    public float markOffset;
     public ParticleSystem[] palmParticleEffects;
     public ParticleSystem[] distantParticleEffects;
     public bool useLeapMotion = true;
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour {
     bool aiming;             //i'm aiming an enemy?
     ParticleSystem particle;
     Transform aimEnemy;
+    GameObject mark;
 
     //boolean to know if a particle is generated
     bool[] particleAlive = { false, false, false, false};     //0 fire, 1 thunder, 2 missile, 3 flamethrower
@@ -142,6 +146,7 @@ public class PlayerController : MonoBehaviour {
         else if (pointingFingers.Count == 1 && palmDirection == Vector.Left) {
             //TODO aim
             Debug.Log("Aiming");
+            Aim();
         }
 
     }
@@ -157,7 +162,14 @@ public class PlayerController : MonoBehaviour {
     // create the particle effect and attachs it to the hand
     void CreatePalmParticle(int particleNumber) {
         // TODO: change the transform in the right hand
-        GameObject container = Instantiate(particleContainer, Vector3.zero, Quaternion.identity, handController);
+        GameObject container;
+        // if flamethrower and rocket
+        if (particleNumber >= 2) {
+            container = Instantiate(particleContainer, Vector3.forward, Quaternion.identity, handController);
+        }
+        else {
+            container = Instantiate(particleContainer, Vector3.zero, Quaternion.identity, handController);
+        }
         particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
     }
 
@@ -173,6 +185,21 @@ public class PlayerController : MonoBehaviour {
         // if some enemy is aimed
         if (aiming && particleAlive[particleNumber]) {
             Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, Quaternion.identity).transform.parent.gameObject, 4f);
+        }
+    }
+
+    // aim a target
+    void Aim() {
+        RaycastHit hit;
+        // TODO: use the finger not a transform
+        if (Physics.Raycast(handController.position, Vector3.forward, out hit, Mathf.Infinity, enemyMask)) {
+            aimEnemy = hit.transform;
+            // if exist
+            if (mark != null) {
+                Destroy(mark);
+            }
+            aiming = true;
+            mark = Instantiate(marker, new Vector3(aimEnemy.position.x, aimEnemy.position.y + markOffset, aimEnemy.position.z), Quaternion.identity, aimEnemy);
         }
     }
 }
