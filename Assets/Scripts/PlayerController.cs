@@ -17,13 +17,38 @@ public class PlayerController : MonoBehaviour {
     public Transform handController;
     public ParticleSystem[] palmParticleEffects;
     public ParticleSystem[] distantParticleEffects;
-    bool useLeapMotion = true;
+    public bool useLeapMotion = true;
 
     //private attributes
     Controller controller;              //for leap
     bool aiming;             //i'm aiming an enemy?
     ParticleSystem particle;
     Transform aimEnemy;
+
+    //boolean to know if a particle is generated
+    bool[] particleAlive = { false, false, false, false};     //0 fire, 1 thunder, 2 missile, 3 flamethrower
+
+    //code to create/destroy particle effects without the leap motion
+    void KeyboardCreateParticle(int particleNumber) {
+        if (particleAlive[particleNumber]) {
+            DestroyParticle();
+            particleAlive[particleNumber] = !particleAlive[particleNumber];
+        }
+        else {
+            if (particle == null || !particle.IsAlive()) {
+                CreatePalmParticle(particleNumber);
+                particleAlive[particleNumber] = !particleAlive[particleNumber];
+            }
+        }
+        
+    }
+
+    //code to attack without the leap motion
+    void KeyboardAttack(int attack) {
+        if(aiming && particleAlive[attack]) {
+            Destroy(Instantiate(distantParticleEffects[attack], aimEnemy.position, Quaternion.identity).transform.parent.gameObject, 4f);
+        }
+    }
 
     void Start() {
         //create the leap controller
@@ -41,7 +66,22 @@ public class PlayerController : MonoBehaviour {
         }
         //when i'm not using leap motion, everything is on the keyboard
         else {
-            //TODO write code to test every action that the player can do
+            if (Input.GetKeyDown("e")){
+                KeyboardCreateParticle(0);
+            }else if (Input.GetKeyDown("r")) {
+                KeyboardAttack(0);
+            }else if (Input.GetKeyDown("q")) {
+                KeyboardCreateParticle(1);
+            }
+            else if (Input.GetKeyDown("tab")) {
+                KeyboardAttack(1);
+            }
+            else if (Input.GetKeyDown("f")) {
+                KeyboardCreateParticle(2);
+            }
+            else if (Input.GetKeyDown("space")) {
+                KeyboardCreateParticle(3);
+            }
         }
         
     }
@@ -62,12 +102,10 @@ public class PlayerController : MonoBehaviour {
         FingerList pointingFingers = hand.Fingers.Extended();
         //get the direction of the palm
         Vector palmDirection = GetVectorDirection(hand.PalmNormal);
-        //TODO use the data that we have to recognize the gestures, even the "no gestures event"
 
         //closed hand, palm facing up - create fireball
         if (pointingFingers.Count == 0 && palmDirection == Vector.Up) {
             Debug.Log("Create fire-ball");
-            //TODO create fireball
             CreatePalmParticle(0);
         }
         //open palm facing up - shoot fireball
@@ -123,11 +161,18 @@ public class PlayerController : MonoBehaviour {
         particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
     }
 
+    //destroy the particle
+    void DestroyParticle() {
+        if (particle.IsAlive()) {
+            Destroy(particle.transform.parent.gameObject);
+        }
+    }
+
     // generate the explosion
     void Attack(int particleNumber) {
         // if some enemy is aimed
-        if (aiming) {
-            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, Quaternion.identity), 4f);
+        if (aiming && particleAlive[particleNumber]) {
+            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, Quaternion.identity).transform.parent.gameObject, 4f);
         }
     }
 }
