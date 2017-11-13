@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject marker;
     public LayerMask enemyMask;
     public float markOffset;
+    public GameObject rocketCollider;
     public ParticleSystem[] palmParticleEffects;
     public ParticleSystem[] distantParticleEffects;
     public bool useLeapMotion = true;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour {
     //code to attack without the leap motion
     void KeyboardAttack(int attack) {
         if(aiming && particleAlive[attack]) {
-            Destroy(Instantiate(distantParticleEffects[attack], aimEnemy.position, Quaternion.identity).transform.parent.gameObject, 4f);
+            Destroy(Instantiate(distantParticleEffects[attack], aimEnemy.position, aimEnemy.rotation).transform.parent.gameObject, 4f);
         }
     }
 
@@ -165,18 +166,23 @@ public class PlayerController : MonoBehaviour {
         GameObject container;
         // if  rocket
         if (particleNumber == 2) {
-            container = Instantiate(particleContainer, Vector3.forward, Quaternion.identity, handController);
+            container = Instantiate(particleContainer, handController.position, handController.rotation, handController);
             //automaticcally destroy the rocket
-            Destroy(Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform).transform.parent.gameObject, 2f);
+            ParticleSystem rocket = Instantiate(palmParticleEffects[particleNumber], container.transform.position, container.transform.rotation, container.transform);
+            Destroy(rocket, 2f);
+            GameObject newRocketCollider = Instantiate(rocketCollider, handController.position, handController.rotation, handController);
+            float speed = rocket.main.startSpeed.constant;
+            newRocketCollider.GetComponent<Rigidbody>().velocity = newRocketCollider.transform.forward * speed;
+            Destroy(newRocketCollider, 2f);
         }
         // if flamethrower
         else if (particleNumber == 3) {
-            container = Instantiate(particleContainer, Vector3.forward, Quaternion.identity, handController);
-            particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
+            container = Instantiate(particleContainer, handController.position, handController.rotation, handController);
+            particle = Instantiate(palmParticleEffects[particleNumber], container.transform.position, container.transform.rotation, container.transform);
         }
         else {
-            container = Instantiate(particleContainer, Vector3.zero, Quaternion.identity, handController);
-            particle = Instantiate(palmParticleEffects[particleNumber], Vector3.zero, Quaternion.identity, container.transform);
+            container = Instantiate(particleContainer, handController.position, handController.rotation, handController);
+            particle = Instantiate(palmParticleEffects[particleNumber], container.transform.position, container.transform.rotation, container.transform);
         }
     }
 
@@ -191,7 +197,10 @@ public class PlayerController : MonoBehaviour {
     void Attack(int particleNumber) {
         // if some enemy is aimed
         if (aiming && particleAlive[particleNumber]) {
-            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, Quaternion.identity).transform.parent.gameObject, 4f);
+            // create particle
+            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, aimEnemy.rotation).transform.parent.gameObject, 4f);
+            // hit enemy
+            aimEnemy.GetComponent<AnimalController>().TakeDamage();
         }
     }
 
@@ -206,7 +215,7 @@ public class PlayerController : MonoBehaviour {
                 Destroy(mark);
             }
             aiming = true;
-            mark = Instantiate(marker, new Vector3(aimEnemy.position.x, aimEnemy.position.y + markOffset, aimEnemy.position.z), Quaternion.identity, aimEnemy);
+            mark = Instantiate(marker, new Vector3(aimEnemy.position.x, aimEnemy.position.y + markOffset, aimEnemy.position.z), aimEnemy.rotation, aimEnemy);
         }
     }
 }

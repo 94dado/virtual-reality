@@ -11,10 +11,22 @@ public class AnimalController : MonoBehaviour {
     }
 
     // take a hit
-    void TakeDamage() {
+    public void TakeDamage() {
         health -= 1;
         if (health <= 0) {
             Die();
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        // if there is a collision with a particle
+        TakeDamage();
+    }
+
+    void OnTriggerStay(Collider other) {
+        // if there is a collision with a particle (not work for rocket)
+        if (other.GetComponent<ParticleSystem>() != null) {
+            TakeDamage();
         }
     }
 }
