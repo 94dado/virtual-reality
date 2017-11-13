@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     public Transform handController;
     public GameObject marker;
     public LayerMask enemyMask;
-    public float markOffset;
     public GameObject rocketCollider;
     public ParticleSystem[] palmParticleEffects;
     public ParticleSystem[] distantParticleEffects;
@@ -51,7 +50,9 @@ public class PlayerController : MonoBehaviour {
     //code to attack without the leap motion
     void KeyboardAttack(int attack) {
         if(aiming && particleAlive[attack]) {
-            Destroy(Instantiate(distantParticleEffects[attack], aimEnemy.position, aimEnemy.rotation).transform.parent.gameObject, 4f);
+            Destroy(Instantiate(distantParticleEffects[attack], aimEnemy.position, aimEnemy.rotation).gameObject, 4f);
+            // hit enemy
+            aimEnemy.GetComponent<AnimalController>().TakeDamage();
         }
     }
 
@@ -86,6 +87,9 @@ public class PlayerController : MonoBehaviour {
             }
             else if (Input.GetKeyDown("space")) {
                 KeyboardCreateParticle(3);
+            }
+            else if (Input.GetMouseButtonDown(0)) {
+                Aim();
             }
         }
         
@@ -198,7 +202,7 @@ public class PlayerController : MonoBehaviour {
         // if some enemy is aimed
         if (aiming && particleAlive[particleNumber]) {
             // create particle
-            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, aimEnemy.rotation).transform.parent.gameObject, 4f);
+            Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, aimEnemy.rotation).gameObject, 4f);
             // hit enemy
             aimEnemy.GetComponent<AnimalController>().TakeDamage();
         }
@@ -207,6 +211,7 @@ public class PlayerController : MonoBehaviour {
     // aim a target
     void Aim() {
         RaycastHit hit;
+        Debug.DrawRay(handController.position, Vector3.forward, Color.red, 5f);
         // TODO: use the finger not a transform
         if (Physics.Raycast(handController.position, Vector3.forward, out hit, Mathf.Infinity, enemyMask)) {
             aimEnemy = hit.transform;
@@ -215,7 +220,7 @@ public class PlayerController : MonoBehaviour {
                 Destroy(mark);
             }
             aiming = true;
-            mark = Instantiate(marker, new Vector3(aimEnemy.position.x, aimEnemy.position.y + markOffset, aimEnemy.position.z), aimEnemy.rotation, aimEnemy);
+            mark = Instantiate(marker, aimEnemy.position, aimEnemy.rotation, aimEnemy);
         }
     }
 }

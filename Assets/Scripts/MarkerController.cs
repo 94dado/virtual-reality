@@ -3,12 +3,17 @@
 public class MarkerController : MonoBehaviour {
 
     public Transform cam;
+    public float markOffset;
 
-	// Update is called once per frame
-	void Update () {
+    private void Start() {
+        cam = FindObjectOfType<CameraMovement>().transform;
+    }
+
+    // Update is called once per frame
+    void Update () {
         // look the camera
         transform.LookAt(cam.transform);
         // follow the parent
-        transform.position = transform.parent.position;
+        transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y + markOffset, transform.parent.position.z);
 	}
 }
