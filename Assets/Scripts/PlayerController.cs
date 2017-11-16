@@ -7,20 +7,19 @@ using System.Collections;
  * 2) Shoot fire-ball:             open palm facing up                                                  R
  * 3) Create thunder:              closed hand, palm facing down                                        Q
  * 4) Shoot thunder:               open palm facing down                                                tab
- * 5) Missile:                     palm facing left, two fingers (one directed up, one forward)         F
+ * 5) Missile:                     thumb directed up, index directed forward                            F
  * 6) Flamethrower:                open palm facing forward                                             Space
- * 7) Aim enemy:                   one pointing fingers (directed forward)                              LeftMouse
+ * 7) Aim enemy:                   palm facing left,index pointing (directed forward)                   LeftMouse
  */
 
 public enum Gesture {
-    none,createFire,shootFire,createThunder,shootThunder,missile,flamethrower
+    none,createFire,createThunder,missile,flamethrower
 }
 
 public class PlayerController : MonoBehaviour {
     //public
     public GameObject particleContainer;
     public Transform handController;
-    public Transform camera;
     public GameObject marker;
     public LayerMask enemyMask;
     public GameObject rocketCollider;
@@ -28,6 +27,12 @@ public class PlayerController : MonoBehaviour {
     public ParticleSystem[] distantParticleEffects;
     public bool useLeapMotion = true;
     public float waitTime = 0.5f;
+
+    //particles numers
+    const int fire_n = 0;
+    const int thunder_n = 1;
+    const int missile_n = 2;
+    const int flamethrower_n = 3;
 
     //private attributes
     Controller controller;              //for leap
@@ -49,7 +54,7 @@ public class PlayerController : MonoBehaviour {
         else {
             if (particle == null || !particle.IsAlive()) {
                 CreatePalmParticle(particleNumber);
-                particleAlive[particleNumber] = !particleAlive[particleNumber];
+                if(particleNumber!=missile_n) particleAlive[particleNumber] = !particleAlive[particleNumber];
             }
         }
         
@@ -67,22 +72,22 @@ public class PlayerController : MonoBehaviour {
         //when i'm not using leap motion, everything is on the keyboard
         if (!useLeapMotion){
             if (Input.GetKeyDown("e")) {
-                CreateParticle(0);
+                CreateParticle(fire_n);
             }
             else if (Input.GetKeyDown("r")) {
-                Attack(0);
+                Attack(fire_n);
             }
             else if (Input.GetKeyDown("q")) {
-                CreateParticle(1);
+                CreateParticle(thunder_n);
             }
             else if (Input.GetKeyDown("tab")) {
-                Attack(1);
+                Attack(thunder_n);
             }
             else if (Input.GetKeyDown("f")) {
-                CreateParticle(2);
+                CreateParticle(missile_n);
             }
             else if (Input.GetKeyDown("space")) {
-                CreateParticle(3);
+                CreateParticle(flamethrower_n);
             }
             else if (Input.GetMouseButtonDown(0)) {
                 KeyboardAim();
@@ -106,10 +111,24 @@ public class PlayerController : MonoBehaviour {
 
     //return true if the player is making a gun with his fingers (only two finger: one finger directed up and the other forward)
     bool FingersLikeGun(FingerList pointingFingers) {
+        //check if there are only 2 fingers
         if (pointingFingers.Count != 2) return false;
-        Vector3 v1 = GetVectorDirection(pointingFingers[0].Direction),
-               v2 = GetVectorDirection(pointingFingers[1].Direction);
-        return ( v1 == Vector.Up.ToUnity() && v2 == Vector.Forward.ToUnity()) || (v2 == Vector.Up.ToUnity() && v1 == Vector.Forward.ToUnity());
+        //check if the 2 fingers are thumb and index
+        Finger thumb, index;
+        thumb = index = null;
+        if (pointingFingers[0].Type == Finger.FingerType.TYPE_THUMB)
+            thumb = pointingFingers[0];
+        else if (pointingFingers[1].Type == Finger.FingerType.TYPE_THUMB)
+            thumb = pointingFingers[1];
+        if (pointingFingers[0].Type == Finger.FingerType.TYPE_INDEX)
+            index = pointingFingers[0];
+        else if (pointingFingers[1].Type == Finger.FingerType.TYPE_INDEX)
+            index = pointingFingers[1];
+        if (thumb == null || index == null) return false;
+        //check if thumb and index are in the correct directions
+        Vector3 thumb_v = GetVectorDirection(thumb.Direction),
+               index_v = GetVectorDirection(index.Direction);
+        return thumb_v == Vector.Up.ToUnity() && index_v == Vector.Forward.ToUnity();
     }
 
     //get data from leap and check if a custom gesture is triggered
@@ -125,56 +144,54 @@ public class PlayerController : MonoBehaviour {
             if(oldGesture != Gesture.createFire) {
                 Debug.Log("Create fire-ball");
                 oldGesture = Gesture.createFire;
-                CreateParticle(0);
+                CreateParticle(fire_n);
             }
         }
-        //open palm facing up - shoot fireball
-        //TODO
+        //open palm facing up
         else if (pointingFingers.Count == 5 && palmDirection == Vector.Up.ToUnity()) { 
             Debug.Log("Shoot fire-ball");
-            Attack(0);
+            Attack(fire_n);
         }
-        //closed hand, palm facing down - create thunder
+        //closed hand, palm facing down
         else if (pointingFingers.Count == 0 && palmDirection == Vector.Down.ToUnity()) {
             if (oldGesture != Gesture.createThunder) {
                 Debug.Log("Create thunder");
                 oldGesture = Gesture.createThunder;
-                CreateParticle(1);
+                CreateParticle(thunder_n);
             }
         }
-        //open palm facing down - shoot thunder
-        //TODO
+        //open palm facing down
         else if (pointingFingers.Count == 5 && palmDirection == Vector.Down.ToUnity()) {
             Debug.Log("Shoot thunder");
-            Attack(1);
+            Attack(thunder_n);
         }
-        //palm facing left, two fingers - missile
-        //TODO
-        else if(FingersLikeGun(pointingFingers) && palmDirection == Vector.Left.ToUnity()) {
+        //thumb directed up, index directed forward
+        else if (FingersLikeGun(pointingFingers)) {
             if(oldGesture != Gesture.missile) {
                 Debug.Log("Shoot missile");
                 oldGesture = Gesture.missile;
-                CreatePalmParticle(2);
+                CreatePalmParticle(missile_n);
             }
 
         }
-        //open palm facing forward - flamethrower
+        //open palm facing forward
         else if(pointingFingers.Count == 5 && palmDirection == Vector.Forward.ToUnity()) {
             if(oldGesture != Gesture.flamethrower) {
                 Debug.Log("Flamethrower");
                 oldGesture = Gesture.flamethrower;
-                CreateParticle(3);
+                CreateParticle(flamethrower_n);
             }
 
         }
-        //one pointing finger forward - aim
-        else if (pointingFingers.Count == 1 && palmDirection == Vector.Left.ToUnity()) {
+        //palm facing left,index pointing (directed forward)
+        else if (pointingFingers.Count == 1 && pointingFingers[0].Type == Finger.FingerType.TYPE_INDEX && palmDirection == Vector.Left.ToUnity()) {
             Debug.Log("Aiming");
             Aim(handController.position, handController.forward);
         }
         //none of the wanted gestures
         else {
-            oldGesture = Gesture.none;          //reset the old gesture
+            //reset the old gesture
+            oldGesture = Gesture.none;
         }
 
     }
@@ -227,7 +244,13 @@ public class PlayerController : MonoBehaviour {
             // create particle
             Destroy(Instantiate(distantParticleEffects[particleNumber], aimEnemy.position, aimEnemy.rotation).gameObject, 4f);
             // hit enemy
-            aimEnemy.GetComponent<AnimalController>().TakeDamage();
+            bool dead = aimEnemy.GetComponent<AnimalController>().TakeDamage();
+            //remove marker if the enemy was killed by the shot
+            if (dead) {
+                aiming = false;
+            }
+            //remove particle effect
+            CreateParticle(particleNumber);
         }
     }
 

@@ -11,11 +11,13 @@ public class AnimalController : MonoBehaviour {
     }
 
     // take a hit
-    public void TakeDamage() {
+    public bool TakeDamage() {
         health -= 1;
         if (health <= 0) {
             Die();
+            return true;
         }
+        return false;
     }
 
     void OnTriggerEnter(Collider other) {
