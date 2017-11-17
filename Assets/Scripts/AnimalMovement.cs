@@ -24,7 +24,7 @@ public class AnimalMovement : MonoBehaviour {
         //enable navmesh
         navigator = GetComponent<NavMeshAgent>();
         navigator = GetComponent<NavMeshAgent>();
-        StartCoroutine(MovementRoutine());
+        StartCoroutine("MovementRoutine");
         spawner = FindObjectOfType<EnemySpawn>();
 	}
 
@@ -62,5 +62,11 @@ public class AnimalMovement : MonoBehaviour {
             //stop moving because i'm arrived
             navigator.enabled = false;
         }
+    }
+
+    // stop movement coroutine
+    public void StopMovement() {
+        StopCoroutine("MovementRoutine");
+        navigator.enabled = false;
     }
 }

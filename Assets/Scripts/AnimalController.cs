@@ -4,10 +4,36 @@ public class AnimalController : MonoBehaviour {
 
     // health of the animal
     [Range(1, 3)] public int health;
+    // explosion speed 
+    public float explosionSpeed;
+    public ParticleSystem explosion;
+
+    Rigidbody myRigidbody;
+    AnimalMovement move;
+    bool isFlame;
+    bool isRocket;
+
+    void Start() {
+        myRigidbody = GetComponent<Rigidbody>();
+        move = GetComponent<AnimalMovement>();
+    }
 
     // kill the animal
     void Die() {
-        Destroy(transform.gameObject);
+        // stop movement coroutine 
+        if (move != null) {
+            move.StopMovement();
+        }
+        // if is not flamethrower push the animal up
+        if (isRocket) {
+            // create explosion
+            Destroy(Instantiate(explosion, transform.position, transform.rotation).gameObject, 4f);
+        }
+        if (!isFlame) {
+            myRigidbody.velocity = Vector3.up * explosionSpeed;
+            myRigidbody.rotation = Random.rotation;
+        }
+        Destroy(transform.gameObject, 5f);
     }
 
     // take a hit
@@ -20,15 +46,29 @@ public class AnimalController : MonoBehaviour {
         return false;
     }
 
+    // collision with a particle
     void OnTriggerEnter(Collider other) {
-        // if there is a collision with a particle
+        // if is a rocket
+        if (other.tag == "Rocket") {
+            isRocket = true;
+        }
+        // if is flame
+        else {
+            isFlame = true;
+        }
         TakeDamage();
     }
 
     void OnTriggerStay(Collider other) {
         // if there is a collision with a particle (not work for rocket)
         if (other.GetComponent<ParticleSystem>() != null) {
+            isFlame = true;
             TakeDamage();
         }
+    }
+
+    void OnTriggerExit(Collider other) {
+        isRocket = false;
+        isFlame = false;
     }
 }
