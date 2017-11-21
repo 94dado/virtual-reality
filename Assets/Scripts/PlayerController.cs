@@ -12,6 +12,7 @@ using System.Collections;
  * 7) Aim enemy:                   palm facing left,index pointing (directed forward)                   LeftMouse
  */
 
+/* -1 up, 1 down, left 1, right -1, 1 forward, -1 backward*/
 public enum Gesture {
     none,createFire,createThunder,missile,flamethrower
 }
@@ -109,6 +110,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+	Vector3 convertLeapToUnity(Vector3 leapToUnity){
+		if (leapToUnity == Vector.Backward.ToUnity ())
+			return Vector3.up;
+		if (leapToUnity == Vector.Forward.ToUnity ())
+			return Vector3.down;
+		return Vector3.zero;
+	}
+
+
     //return true if the player is making a gun with his fingers (only two finger: one finger directed up and the other forward)
     bool FingersLikeGun(FingerList pointingFingers) {
         //check if there are only 2 fingers
@@ -127,8 +137,12 @@ public class PlayerController : MonoBehaviour {
         if (thumb == null || index == null) return false;
         //check if thumb and index are in the correct directions
         Vector3 thumb_v = GetVectorDirection(thumb.Direction),
-               index_v = GetVectorDirection(index.Direction);
-        return thumb_v == Vector.Up.ToUnity() && index_v == Vector.Forward.ToUnity();
+               	index_v = GetVectorDirection(index.Direction);
+		Vector3 left = Vector.Left.ToUnity(),
+				forward = Vector.Forward.ToUnity();
+		//Debug.Log ("left:"+left+",thumb:"+thumb_v);
+		//Debug.Log ("forward:"+forward+",index:"+index_v);
+		return thumb_v == left && index_v == forward;
     }
 
     //get data from leap and check if a custom gesture is triggered
@@ -140,7 +154,9 @@ public class PlayerController : MonoBehaviour {
         //get the direction of the palm
         Vector3 palmDirection = GetVectorDirection(hand.PalmNormal);
         //closed hand, palm facing up - create fireball
-        if (pointingFingers.Count == 0 && palmDirection == Vector.Up.ToUnity()) {
+		Debug.Log("unity up "+Vector.Up.ToUnity());
+		Debug.Log ("palmDirection " + palmDirection);
+		if (pointingFingers.Count == 0 && convertLeapToUnity(palmDirection) == Vector.Up.ToUnity()) {
             if(oldGesture != Gesture.createFire) {
                 Debug.Log("Create fire-ball");
                 oldGesture = Gesture.createFire;
@@ -148,12 +164,12 @@ public class PlayerController : MonoBehaviour {
             }
         }
         //open palm facing up
-        else if (pointingFingers.Count == 5 && palmDirection == Vector.Up.ToUnity()) { 
+		else if (pointingFingers.Count == 5 && convertLeapToUnity(palmDirection) == Vector.Up.ToUnity()) { 
             Debug.Log("Shoot fire-ball");
             Attack(fire_n);
         }
         //closed hand, palm facing down
-        else if (pointingFingers.Count == 0 && palmDirection == Vector.Down.ToUnity()) {
+		else if (pointingFingers.Count == 0 && convertLeapToUnity(palmDirection) == Vector.Down.ToUnity()) {
             if (oldGesture != Gesture.createThunder) {
                 Debug.Log("Create thunder");
                 oldGesture = Gesture.createThunder;
@@ -161,7 +177,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         //open palm facing down
-        else if (pointingFingers.Count == 5 && palmDirection == Vector.Down.ToUnity()) {
+		else if (pointingFingers.Count == 5 && convertLeapToUnity(palmDirection) == Vector.Down.ToUnity()) {
             Debug.Log("Shoot thunder");
             Attack(thunder_n);
         }
@@ -175,7 +191,7 @@ public class PlayerController : MonoBehaviour {
 
         }
         //open palm facing forward
-        else if(pointingFingers.Count == 5 && palmDirection == Vector.Forward.ToUnity()) {
+		else if(pointingFingers.Count == 5 && convertLeapToUnity(palmDirection) == Vector.Forward.ToUnity()) {
             if(oldGesture != Gesture.flamethrower) {
                 Debug.Log("Flamethrower");
                 oldGesture = Gesture.flamethrower;
@@ -184,7 +200,7 @@ public class PlayerController : MonoBehaviour {
 
         }
         //palm facing left,index pointing (directed forward)
-        else if (pointingFingers.Count == 1 && pointingFingers[0].Type == Finger.FingerType.TYPE_INDEX && palmDirection == Vector.Left.ToUnity()) {
+        else if (pointingFingers.Count == 1 && pointingFingers[0].Type == Finger.FingerType.TYPE_INDEX) {
             Debug.Log("Aiming");
             Aim(handController.position, handController.forward);
         }
