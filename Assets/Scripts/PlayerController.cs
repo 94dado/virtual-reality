@@ -9,7 +9,7 @@ using System.Collections;
  * 4) Shoot thunder:               open palm facing down                                                tab
  * 5) Missile:                     thumb directed up, index directed forward                            F
  * 6) Flamethrower:                open palm facing forward                                             Space
- * 7) Aim enemy:                   palm facing left,index pointing (directed forward)                   LeftMouse
+ * 7) Aim enemy:                   index pointing (directed forward)                   					LeftMouse
  */
 
 /* -1 up, 1 down, left 1, right -1, 1 forward, -1 backward*/
@@ -20,28 +20,31 @@ public enum Gesture {
 public class PlayerController : MonoBehaviour {
     //public
     public GameObject particleContainer;
-    public Transform handController;
+    public Transform handController;					//transform for the object that rapresents the rotation of the Leap Motion
     public GameObject marker;
     public LayerMask enemyMask;
     public GameObject rocketCollider;
     public ParticleSystem[] palmParticleEffects;
     public ParticleSystem[] distantParticleEffects;
     public bool useLeapMotion = true;
-    public float waitTime = 0.5f;
+    public float waitTime = 0.5f;						//waiting time for leap motion frame handling
+	public float tolleranceRecognition = 0.2f;			//tollerance to check if the hand/fingers are in the correct directions
 
-    //particles numers
+    //particles numbers
     const int fire_n = 0;
     const int thunder_n = 1;
     const int missile_n = 2;
     const int flamethrower_n = 3;
 
     //private attributes
-    Controller controller;              //for leap
-    bool aiming;             //i'm aiming an enemy?
+    Controller controller;              				//for leap
+    bool aiming;             							//i'm aiming an enemy?
     ParticleSystem particle;
-    Transform aimEnemy;
-    GameObject mark;
-    Gesture oldGesture = Gesture.none;
+    Transform aimEnemy;									//aimed enemy
+    GameObject mark;									//the marker to show the marked enemy
+    Gesture oldGesture = Gesture.none;					//the old gesture, to improve Leap Motion controls
+
+	Vector3 up,left,right,down,forward,backward;		//Leap Motion directions, used to recognize gestures	
 
     //boolean to know if a particle is generated
     bool[] particleAlive = { false, false, false, false};     //0 fire, 1 thunder, 2 missile, 3 flamethrower
@@ -61,6 +64,17 @@ public class PlayerController : MonoBehaviour {
         
     }
 
+	//update axis
+	void UpdateAxis(){
+		up = handController.up;
+		down = - handController.up;
+		forward = handController.forward;
+		backward = -handController.forward;
+		right = handController.right;
+		left = - handController.right;
+	}
+
+	//choose between leap motion or keyboard settings
     void Start() {
         //create the leap controller
         controller = new Controller();
@@ -69,6 +83,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+	//keyboard settings:
     private void Update() {
         //when i'm not using leap motion, everything is on the keyboard
         if (!useLeapMotion){
@@ -96,28 +111,42 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+	//Leap Motion settings:
     IEnumerator Poller() {
         while (true) {
             yield return new WaitForSeconds(waitTime);
             //get frame and gestures
             Frame frame = controller.Frame();
             //search for a custom gesture
-            if (frame.Hands.Count > 0)
-                SearchCustomGesture(frame);
+			if (frame.Hands.Count > 0) {
+				//update axis of the leap rotation
+				UpdateAxis();
+				//try to recognize gestures
+				SearchCustomGesture (frame);
+			}
             else {
+				//no hands: remove any active effect
                 DestroyParticle();
             }
         }
     }
 
-	Vector3 convertLeapToUnity(Vector3 leapToUnity){
-		if (leapToUnity == Vector.Backward.ToUnity ())
-			return Vector3.up;
-		if (leapToUnity == Vector.Forward.ToUnity ())
-			return Vector3.down;
-		return Vector3.zero;
+	//check if a vector is really similar to another
+	bool VectorEquals(Vector3 a, Vector3 b){
+		bool toRet = true;
+		float diffx = Mathf.Abs(b.x - a.x),
+		diffy = Mathf.Abs(b.y - a.y),
+		diffz = Mathf.Abs(b.z - a.z);
+		if (diffx > tolleranceRecognition) {
+			toRet = false;
+		} else if (diffy > tolleranceRecognition) {
+			toRet = false;
+		} else if (diffz > tolleranceRecognition) {
+			toRet = false;
+		}
+		//Debug.Log ("same: " + toRet);
+		return toRet;
 	}
-
 
     //return true if the player is making a gun with his fingers (only two finger: one finger directed up and the other forward)
     bool FingersLikeGun(FingerList pointingFingers) {
@@ -135,14 +164,9 @@ public class PlayerController : MonoBehaviour {
         else if (pointingFingers[1].Type == Finger.FingerType.TYPE_INDEX)
             index = pointingFingers[1];
         if (thumb == null || index == null) return false;
-        //check if thumb and index are in the correct directions
-        Vector3 thumb_v = GetVectorDirection(thumb.Direction),
-               	index_v = GetVectorDirection(index.Direction);
-		Vector3 left = Vector.Left.ToUnity(),
-				forward = Vector.Forward.ToUnity();
-		//Debug.Log ("left:"+left+",thumb:"+thumb_v);
-		//Debug.Log ("forward:"+forward+",index:"+index_v);
-		return thumb_v == left && index_v == forward;
+        //check if index is directed forward
+		Vector3 index_v = index.Direction.ToUnity ();
+		return VectorEquals(index_v, forward);
     }
 
     //get data from leap and check if a custom gesture is triggered
@@ -152,11 +176,11 @@ public class PlayerController : MonoBehaviour {
         //get all the pointing fingers
         FingerList pointingFingers = hand.Fingers.Extended();
         //get the direction of the palm
-        Vector3 palmDirection = GetVectorDirection(hand.PalmNormal);
-        //closed hand, palm facing up - create fireball
-		Debug.Log("unity up "+Vector.Up.ToUnity());
-		Debug.Log ("palmDirection " + palmDirection);
-		if (pointingFingers.Count == 0 && convertLeapToUnity(palmDirection) == Vector.Up.ToUnity()) {
+		Vector3 palmDirection = hand.PalmNormal.ToUnity();
+		//rotate the normal of -90 degrees on x axis because the Leap Motion is head mounted (aka rotated of 90 degrees on x axis)
+		palmDirection = Quaternion.Euler (-90, 0, 90) * palmDirection;
+		//closed hand, palm facing up
+		if (pointingFingers.Count == 0 && VectorEquals(palmDirection, up)) {
             if(oldGesture != Gesture.createFire) {
                 Debug.Log("Create fire-ball");
                 oldGesture = Gesture.createFire;
@@ -164,12 +188,12 @@ public class PlayerController : MonoBehaviour {
             }
         }
         //open palm facing up
-		else if (pointingFingers.Count == 5 && convertLeapToUnity(palmDirection) == Vector.Up.ToUnity()) { 
+		else if (pointingFingers.Count == 5 && VectorEquals(palmDirection, up)) { 
             Debug.Log("Shoot fire-ball");
             Attack(fire_n);
         }
         //closed hand, palm facing down
-		else if (pointingFingers.Count == 0 && convertLeapToUnity(palmDirection) == Vector.Down.ToUnity()) {
+		else if (pointingFingers.Count == 0 && VectorEquals(palmDirection, down)) {
             if (oldGesture != Gesture.createThunder) {
                 Debug.Log("Create thunder");
                 oldGesture = Gesture.createThunder;
@@ -177,7 +201,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         //open palm facing down
-		else if (pointingFingers.Count == 5 && convertLeapToUnity(palmDirection) == Vector.Down.ToUnity()) {
+		else if (pointingFingers.Count == 5 && VectorEquals(palmDirection, down)) {
             Debug.Log("Shoot thunder");
             Attack(thunder_n);
         }
@@ -186,12 +210,12 @@ public class PlayerController : MonoBehaviour {
             if(oldGesture != Gesture.missile) {
                 Debug.Log("Shoot missile");
                 oldGesture = Gesture.missile;
-                CreatePalmParticle(missile_n);
+                CreateParticle(missile_n);
             }
 
         }
         //open palm facing forward
-		else if(pointingFingers.Count == 5 && convertLeapToUnity(palmDirection) == Vector.Forward.ToUnity()) {
+		else if(pointingFingers.Count == 5 && VectorEquals(palmDirection, forward)) {
             if(oldGesture != Gesture.flamethrower) {
                 Debug.Log("Flamethrower");
                 oldGesture = Gesture.flamethrower;
@@ -199,7 +223,7 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
-        //palm facing left,index pointing (directed forward)
+        //index pointing (directed forward)
         else if (pointingFingers.Count == 1 && pointingFingers[0].Type == Finger.FingerType.TYPE_INDEX) {
             Debug.Log("Aiming");
             Aim(handController.position, handController.forward);
@@ -210,14 +234,6 @@ public class PlayerController : MonoBehaviour {
             oldGesture = Gesture.none;
         }
 
-    }
-
-    //return the rounded normal values of the palm of an hand (usefull to confront them with directions)
-    Vector3 GetVectorDirection(Vector vec) {
-        float x = Mathf.Round(vec.x);
-        float y = Mathf.Round(vec.y);
-        float z = Mathf.Round(vec.z);
-        return new Vector3(x, y, z);
     }
 
     // create the particle effect and attachs it to the hand
