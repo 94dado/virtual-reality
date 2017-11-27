@@ -10,12 +10,14 @@ public class AnimalController : MonoBehaviour {
 
     Rigidbody myRigidbody;
     AnimalMovement move;
+    AudioSource audioSource;
     bool isFlame;
     bool isRocket;
 
     void Start() {
         myRigidbody = GetComponent<Rigidbody>();
         move = GetComponent<AnimalMovement>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // kill the animal
@@ -33,6 +35,8 @@ public class AnimalController : MonoBehaviour {
             myRigidbody.velocity = Vector3.up * explosionSpeed;
             myRigidbody.rotation = Random.rotation;
         }
+        // play the audio of the death of enemy
+        audioSource.Play();
         Destroy(transform.gameObject, 5f);
     }
 
