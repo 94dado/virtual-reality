@@ -164,9 +164,7 @@ public class PlayerController : MonoBehaviour {
         else if (pointingFingers[1].Type == Finger.FingerType.TYPE_INDEX)
             index = pointingFingers[1];
         if (thumb == null || index == null) return false;
-        //check if index is directed forward
-		Vector3 index_v = index.Direction.ToUnity ();
-		return VectorEquals(index_v, forward);
+		return true;
     }
 
     //get data from leap and check if a custom gesture is triggered

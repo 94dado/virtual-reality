@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     //constraints
     public float gravity = 100f;
 
-    public float keySpeed = 10;
+    public float keySpeed = 10f;
 
 	public CharacterController player;
     float distance;
@@ -20,8 +20,8 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         //lock the cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
