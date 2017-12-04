@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour {
     public float waitTime = 0.5f;						//waiting time for leap motion frame handling
 	public float tolleranceRecognition = 0.2f;			//tollerance to check if the hand/fingers are in the correct directions
 
+	//aiming corrections
+	//public float correctionX, correctionY, correctionZ;
+
     //particles numbers
     const int fire_n = 0;
     const int thunder_n = 1;
@@ -224,7 +227,7 @@ public class PlayerController : MonoBehaviour {
         //index pointing (directed forward)
         else if (pointingFingers.Count == 1 && pointingFingers[0].Type == Finger.FingerType.TYPE_INDEX) {
             Debug.Log("Aiming");
-            Aim(handController.position, handController.forward);
+			Aim(handController.position, handController.forward);
         }
         //none of the wanted gestures
         else {
