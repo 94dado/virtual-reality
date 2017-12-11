@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
     Transform aimEnemy;									//aimed enemy
     GameObject mark;									//the marker to show the marked enemy
     Gesture oldGesture = Gesture.none;					//the old gesture, to improve Leap Motion controls
-
+    Gesture gst = Gesture.none;
 	Vector3 up,left,right,down,forward,backward;		//Leap Motion directions, used to recognize gestures	
 
     //boolean to know if a particle is generated
@@ -84,31 +84,61 @@ public class PlayerController : MonoBehaviour {
         if (useLeapMotion) {
             StartCoroutine(Poller());
         }
+
     }
 
 	//keyboard settings:
     private void Update() {
+        /*
+        Debug.Log("bttn0: " + Input.GetKeyDown(KeyCode.Joystick1Button0));
+        Debug.Log("bttn1: " + Input.GetKeyDown(KeyCode.Joystick1Button1));
+        Debug.Log("bttn2: " + Input.GetKeyDown(KeyCode.Joystick1Button2));
+        Debug.Log("bttn3: " + Input.GetKeyDown(KeyCode.Joystick1Button3));
+        Debug.Log("bttn4: " + Input.GetKeyDown(KeyCode.Joystick1Button4));
+        Debug.Log("bttn5: " + Input.GetKeyDown(KeyCode.Joystick1Button5));
+        Debug.Log("bttn6: " + Input.GetKeyDown(KeyCode.Joystick1Button6));
+        Debug.Log("bttn7: " + Input.GetKeyDown(KeyCode.Joystick1Button7));
+        Debug.Log("bttn8: " + Input.GetKeyDown(KeyCode.Joystick1Button8));
+        Debug.Log("bttn9: " + Input.GetKeyDown(KeyCode.Joystick1Button9));
+        Debug.Log("bttn10: " + Input.GetKeyDown(KeyCode.Joystick1Button10));
+        Debug.Log("bttn11: " + Input.GetKeyDown(KeyCode.Joystick1Button11));
+        Debug.Log("bttn12: " + Input.GetKeyDown(KeyCode.Joystick1Button12));
+        Debug.Log("bttn13: " + Input.GetKeyDown(KeyCode.Joystick1Button13));
+        */
+        
         //when i'm not using leap motion, everything is on the keyboard
         if (!useLeapMotion){
-            if (Input.GetKeyDown("e")) {
+            if (gst != Gesture.createFire && Input.GetKeyDown(KeyCode.Joystick1Button0)) {
+                gst = Gesture.createFire;
                 CreateParticle(fire_n);
             }
-            else if (Input.GetKeyDown("r")) {
-                Attack(fire_n);
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button0)) {
+                if (gst == Gesture.createFire) {
+                    Attack(fire_n);
+                    gst = Gesture.none;
+                }
+                
             }
-            else if (Input.GetKeyDown("q")) {
+            else if (gst != Gesture.createThunder && Input.GetKeyDown(KeyCode.Joystick1Button1)) {
+                gst = Gesture.createThunder;
                 CreateParticle(thunder_n);
             }
-            else if (Input.GetKeyDown("tab")) {
-                Attack(thunder_n);
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button1)) {
+                if (gst == Gesture.createThunder) {
+                    Attack(thunder_n);
+                    gst = Gesture.none;
+                }
             }
-            else if (Input.GetKeyDown("f")) {
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button2)) {
+                gst = Gesture.none;
                 CreateParticle(missile_n);
             }
-            else if (Input.GetKeyDown("space")) {
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button3)) {
+                gst = Gesture.none;
                 CreateParticle(flamethrower_n);
             }
-            else if (Input.GetMouseButtonDown(0)) {
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button10)) {
+                gst = Gesture.none;
                 KeyboardAim();
             }
         }
@@ -305,9 +335,5 @@ public class PlayerController : MonoBehaviour {
             aiming = true;
             mark = Instantiate(marker, aimEnemy.position, aimEnemy.rotation, aimEnemy);
         }
-    }
-
-    Vector3 Vector3Abs(Vector3 vec) {
-        return new Vector3(Mathf.Abs(vec.x), Mathf.Abs(vec.y), Mathf.Abs(vec.z));
     }
 }
