@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour
 
     public float keySpeed = 10f;
 
-	public CharacterController player;
+	CharacterController player;
     float distance;
     float rotationXoffset;
 
@@ -19,9 +19,7 @@ public class CameraMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //lock the cursor
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        player = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
