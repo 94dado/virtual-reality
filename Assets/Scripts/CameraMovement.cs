@@ -10,21 +10,18 @@ public class CameraMovement : MonoBehaviour
 
     public float keySpeed = 10f;
 
-	CharacterController player;
+	public CharacterController player;
     float distance;
     float rotationXoffset;
 
     
 
-    // Use this for initialization
-    void Start()
-    {
-        player = GetComponent<CharacterController>();
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //player rotation
+        player.transform.localEulerAngles = 
+            new Vector3(player.transform.localEulerAngles.x, transform.localEulerAngles.y, player.transform.localEulerAngles.z);
         //player position
         Vector3 moveDir;
         if (!invertedAxis) moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
